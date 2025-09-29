@@ -1,6 +1,6 @@
 # youtube-caption
 
-A Go SDK for downloading YouTube auto-generated captions.
+A simple Go library for downloading YouTube auto-generated captions.
 
 ## Installation
 
@@ -8,7 +8,7 @@ A Go SDK for downloading YouTube auto-generated captions.
 go get github.com/lincaiyong/youtube-caption
 ```
 
-## Usage
+## Quick Start
 
 ```go
 package main
@@ -20,8 +20,7 @@ import (
 )
 
 func main() {
-    // Download captions
-    captions, err := caption.Download("ATqljKtkhm8")
+    captions, err := caption.Download("vStJoetOxJg")
     if err != nil {
         log.Fatal(err)
     }
@@ -32,22 +31,39 @@ func main() {
         fmt.Printf("%.1fs: %s\n", text.StartTime, text.Text)
     }
 
-    // Save to file
-    captions.SaveToFile("captions.json")
+    // Export to different formats
+    captions.SaveSRT("captions.srt")
+    captions.SaveVTT("captions.vtt")
+    captions.SavePlainText("captions.txt")
 }
 ```
 
+## Features
+
+- Download YouTube auto-generated captions
+- Export to SRT, VTT, plain text, or JSON
+- Custom language and timeout options
+- Get available caption tracks
+
 ## API
 
-- `caption.Download(videoID)` - Download English captions
-- `caption.DownloadWithOptions(videoID, language, kind)` - Download with options
-- `captions.GetSubtitleText()` - Extract text with timestamps
-- `captions.SaveToFile(filename)` - Save to JSON file
+```go
+// Basic usage
+caption.Download(videoID)
+caption.GetAvailableTracks(videoID)
 
-## Example
+// With options
+opts := &caption.Options{
+    Language: "en",
+    Timeout:  15 * time.Second,
+}
+caption.DownloadWithOptions(videoID, opts)
 
-```bash
-go run example/main.go
+// Export methods
+captions.GetSubtitleText()  // []SubtitleText
+captions.GetPlainText()     // string
+captions.GetSRT()           // string
+captions.GetVTT()           // string
 ```
 
 ## License
