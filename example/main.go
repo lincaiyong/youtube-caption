@@ -14,11 +14,5 @@ func main() {
 		log.Printf("Error: %v\n", err)
 		return
 	}
-
-	texts := captions.GetSubtitleText()
-	fmt.Printf("Downloaded %d caption segments\n", len(texts))
-
-	if len(texts) > 0 {
-		fmt.Printf("First caption: %.1fs - %s\n", texts[0].StartTime, texts[0].Text)
-	}
+	fmt.Println(captions)
 }
