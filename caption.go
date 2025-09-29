@@ -15,11 +15,9 @@ import (
 )
 
 var (
-	ErrInvalidVideoID     = errors.New("invalid video ID")
-	ErrNoCaptionsFound    = errors.New("no captions found for this video")
-	ErrUnsupportedFormat  = errors.New("unsupported caption format")
-	ErrNetworkTimeout     = errors.New("network request timeout")
-	ErrRateLimited        = errors.New("rate limited by YouTube")
+	ErrInvalidVideoID  = errors.New("invalid video ID")
+	ErrNoCaptionsFound = errors.New("no captions found for this video")
+	ErrRateLimited     = errors.New("rate limited by YouTube")
 )
 
 type CaptionTrack struct {
@@ -53,17 +51,17 @@ type SubtitleText struct {
 }
 
 type Options struct {
-	Language    string
-	Kind        string
-	Timeout     time.Duration
-	MaxRetries  int
-	UserAgent   string
+	Language   string
+	Kind       string
+	Timeout    time.Duration
+	MaxRetries int
+	UserAgent  string
 }
 
 const (
-	playerURL     = "https://www.youtube.com/youtubei/v1/player?prettyPrint=false"
-	defaultUA     = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.5 Safari/605.1.15"
-	defaultTimeout = 30 * time.Second
+	playerURL         = "https://www.youtube.com/youtubei/v1/player?prettyPrint=false"
+	defaultUA         = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.5 Safari/605.1.15"
+	defaultTimeout    = 30 * time.Second
 	defaultMaxRetries = 3
 )
 
