@@ -33,10 +33,8 @@ func makeRequestWithRetry(client *http.Client, req *http.Request) (*http.Respons
 		if err != nil {
 			return err
 		}
-		defer func() {
-			_ = resp.Body.Close()
-		}()
 		if resp.StatusCode >= 500 || resp.StatusCode == 429 {
+			_ = resp.Body.Close()
 			return fmt.Errorf("HTTP %d: %s", resp.StatusCode, resp.Status)
 		}
 		return nil
